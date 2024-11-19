@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #afafaf;
+  --background: #fff;
 }
 
 body {
   background: var(--background);
+  font-family: 'Plus Jakarta Sans';
+  
 }
