@@ -13,7 +13,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Button from '@mui/material/Button';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Image from "next/image";
@@ -28,7 +32,14 @@ const classes = {
     logo: "lg:h-12 md:h-11 md:h-10 sm:h-8 min-[300px]:h-7 w-auto",
 }
 
-const pages = ['Home', 'Author Information', 'Program', 'Registration', 'Travel & Accomodation', 'Sponsors'];
+const pages = [
+    { title: 'Home', subItems: [] },
+    { title: 'Author Information', subItems: ['Submission Guidelines', 'Important Dates'] },
+    { title: 'Program', subItems: ['Keynote Speakers', 'Schedule'] },
+    { title: 'Registration', subItems: ['Fees', 'Registration Form'] },
+    { title: 'Travel & Accommodation', subItems: ['Hotels', 'Travel Info'] },
+    { title: 'Sponsors', subItems: ['Current Sponsors', 'Become a Sponsor'] },
+];
 const ieee_pages = ['IEEE.org', 'IEEE Xplore Digital Library', 'IEEE Standards', 'IEEE Spectrum', 'More Sites'];
 const drawerWidth = 240;
 
@@ -50,6 +61,11 @@ export default function Navbar(props) {
         setMobileOpen((prevState) => !prevState);
     };
     
+    const [open, setOpen] = React.useState(true);
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
@@ -57,12 +73,24 @@ export default function Navbar(props) {
             </Typography>
             <Divider />
             <List>
-                {pages.map((page) => (
-                <ListItem key={page} disablePadding>
-                    <ListItemButton sx={{ textAlign: 'left' }}>
-                    <ListItemText primary={page} />
-                    </ListItemButton>
-                </ListItem>
+                {pages.map((page, index) => (
+                    <ListItem key={index} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'left' }}>
+                            <ListItemText primary={page.title} />
+                            {page.subItems && page.subItems.length > 0 ? (open ? <ExpandLess /> : <ExpandMore />) : null}
+                        </ListItemButton>
+                        {page.subItems && page.subItems.length > 0 && (
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    {page.subItems.map((subItem, subIndex) => (
+                                        <ListItemButton key={`${page.title}-${subItem}`} sx={{ pl: 4 }}>
+                                            <ListItemText primary={subItem} />
+                                        </ListItemButton>
+                                    ))}
+                                </List>
+                            </Collapse>
+                        )}
+                    </ListItem>
                 ))}
             </List>
         </Box>
