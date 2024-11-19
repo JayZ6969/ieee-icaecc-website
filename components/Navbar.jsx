@@ -18,6 +18,7 @@ import Button from '@mui/material/Button';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Image from "next/image";
@@ -29,7 +30,7 @@ const classes = {
     container: "flex justify-between items-center lg:py-5 md:py-4 sm:py-3",
     mininavbar: "flex flex-row w-full justify-between items-center bg-black h-8 px-4",
     minilogo: "h-4 w-auto",
-    logo: "lg:h-12 md:h-11 md:h-10 sm:h-8 min-[300px]:h-7 w-auto",
+    logo: "lg:h-12 md:h-11 md:h-10 xs:h-9 h-8 w-auto",
 }
 
 const pages = ['Home', 'Author Information', 'Program', 'Registration', 'Travel & Accomodation', 'Contact Us'];
@@ -38,7 +39,7 @@ const ieee_pages = ['IEEE.org', 'IEEE Xplore Digital Library', 'IEEE Standards',
 const drawerWidth = 240;
 
 export default function Navbar() {
-    
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
       
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -160,22 +161,6 @@ export default function Navbar() {
         </Box>
     );
 
-    function HideOnScroll(props) {
-        const { children, window } = props;
-        // Note that you normally won't need to set the window ref as useScrollTrigger
-        // will default to window.
-        // This is only being set here because the demo is in an iframe.
-        const trigger = useScrollTrigger({
-          target: window ? window() : undefined,
-        });
-      
-        return (
-          <Slide appear={false} direction="down" in={!trigger}>
-            {children ?? <div />}
-          </Slide>
-        );
-      }
-
     return (
         <nav>
             <AppBar position='static' className={classes.mininavbar} sx={{backgroundColor: '#000', display: {md: 'flex', xs: 'none'}}}>
@@ -230,7 +215,8 @@ export default function Navbar() {
                         <Button
                             key={page}
                             onClick={handleCloseNavMenu}
-                            sx={{ color: 'black', display: 'block', paddingX: '0.75rem' }}
+                            sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                            endIcon={<KeyboardArrowDownIcon />}
                         >
                             {page}
                         </Button>
