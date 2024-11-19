@@ -32,66 +32,130 @@ const classes = {
     logo: "lg:h-12 md:h-11 md:h-10 sm:h-8 min-[300px]:h-7 w-auto",
 }
 
-const pages = [
-    { title: 'Home', subItems: [] },
-    { title: 'Author Information', subItems: ['Submission Guidelines', 'Important Dates'] },
-    { title: 'Program', subItems: ['Keynote Speakers', 'Schedule'] },
-    { title: 'Registration', subItems: ['Fees', 'Registration Form'] },
-    { title: 'Travel & Accommodation', subItems: ['Hotels', 'Travel Info'] },
-    { title: 'Sponsors', subItems: ['Current Sponsors', 'Become a Sponsor'] },
-];
+const pages = ['Home', 'Author Information', 'Program', 'Registration', 'Travel & Accomodation', 'Contact Us'];
+
 const ieee_pages = ['IEEE.org', 'IEEE Xplore Digital Library', 'IEEE Standards', 'IEEE Spectrum', 'More Sites'];
 const drawerWidth = 240;
 
-export default function Navbar(props) {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+export default function Navbar() {
+    
       
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     }
 
-    const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
     
-    const [open, setOpen] = React.useState(true);
-    const handleClick = () => {
-        setOpen(!open);
+    const [open, setOpen] = React.useState({
+        home: false,
+        authorInformation: false,
+        program: false,
+    });
+
+    const handleClick = (menu) => {
+        setOpen((prevState) => ({
+            ...prevState,
+            [menu]: !prevState[menu],
+        }));
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
                 ICAECC - 2025
             </Typography>
             <Divider />
             <List>
-                {pages.map((page, index) => (
-                    <ListItem key={index} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'left' }}>
-                            <ListItemText primary={page.title} />
-                            {page.subItems && page.subItems.length > 0 ? (open ? <ExpandLess /> : <ExpandMore />) : null}
-                        </ListItemButton>
-                        {page.subItems && page.subItems.length > 0 && (
-                            <Collapse in={open} timeout="auto" unmountOnExit>
-                                <List component="div" disablePadding>
-                                    {page.subItems.map((subItem, subIndex) => (
-                                        <ListItemButton key={`${page.title}-${subItem}`} sx={{ pl: 4 }}>
-                                            <ListItemText primary={subItem} />
-                                        </ListItemButton>
-                                    ))}
-                                </List>
-                            </Collapse>
-                        )}
-                    </ListItem>
-                ))}
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={() => handleClick('home')}>
+                        <ListItemText primary="Home" />
+                        {open.home ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton> 
+                    <Collapse in={open.home} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItemButton component="a" href="/home/about" sx={{ pl: 4 }}>
+                                <ListItemText primary="About ICAECC" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/home/organizers" sx={{ pl: 4 }}>
+                                <ListItemText primary="Organizers" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/home/past-conferences" sx={{ pl: 4 }}>
+                                <ListItemText primary="Past Conferences" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/home/general-faq" sx={{ pl: 4 }}>
+                                <ListItemText primary="General FAQ" />
+                            </ListItemButton>
+                        </List>
+                    </Collapse>
+                </ListItem>
+
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={() => handleClick('authorInformation')}>
+                        <ListItemText primary="Author Information" />
+                        {open.authorInformation ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton> 
+                    <Collapse in={open.authorInformation} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItemButton component="a" href="/author-information/topics" sx={{ pl: 4 }}>
+                                <ListItemText primary="Topics" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/author-information/author-submission" sx={{ pl: 4 }}>
+                                <ListItemText primary="Author Submission" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/author-information/cfp" sx={{ pl: 4 }}>
+                                <ListItemText primary="CFP" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/author-information/tutorials" sx={{ pl: 4 }}>
+                                <ListItemText primary="Tutorials" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/author-information/student-research-forum" sx={{ pl: 4 }}>
+                                <ListItemText primary="Student Research Forum" />
+                            </ListItemButton>
+                        </List>
+                    </Collapse>
+                </ListItem>
+
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={() => handleClick('program')}>
+                        <ListItemText primary="Program" />
+                        {open.program ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton> 
+                    <Collapse in={open.program} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItemButton component="a" href="/program/keynote-sessions" sx={{ pl: 4 }}>
+                                <ListItemText primary="Keynote Sessions" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/program/workshops" sx={{ pl: 4 }}>
+                                <ListItemText primary="Workshops" />
+                            </ListItemButton>
+                            <ListItemButton component="a" href="/program/invited-speakers" sx={{ pl: 4 }}>
+                                <ListItemText primary="Invted Speakers" />
+                            </ListItemButton>
+                        </List>
+                    </Collapse>
+                </ListItem>
+
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={handleClick}>
+                        <ListItemText primary="Registration" />
+                    </ListItemButton> 
+                </ListItem>
+
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={handleClick}>
+                        <ListItemText primary="Travel & Accomodation" />
+                    </ListItemButton> 
+                </ListItem>
+
+                <ListItem sx={{flexDirection: 'column'}}  disablePadding>
+                    <ListItemButton sx={{ textAlign: 'left', alignItems: 'space-between', width: '100%' }} onClick={handleClick}>
+                        <ListItemText primary="Sponsors" />
+                    </ListItemButton> 
+                </ListItem>
             </List>
         </Box>
     );
