@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/Navbar";
+import Carousel from "../components/Carousel";
 
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={theme }>
         <AppRouterCacheProvider>
           <Navbar />
+          <Carousel/>
           <main>{children}</main>
         </AppRouterCacheProvider>
         </ThemeProvider>

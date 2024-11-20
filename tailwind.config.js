@@ -11,7 +11,20 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      clipPath: {
+        'slant-left': 'polygon(0 0, 100% 0, 100% 100%, 0 80%)',
+      }
     },
   },
-  plugins: [],
+  variants: {},
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.clip-slant-left': {
+          'clip-path': 'polygon(0% 0, 100% 0, 100% 100%, 20% 100%)',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
 };
