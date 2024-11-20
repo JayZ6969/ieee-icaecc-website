@@ -22,7 +22,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Image from "next/image";
-import REVA from "../public/REVA.png";
+import REVA from "../public/REVA_1.png";
 import IEEE from "../public/IEEE.png";
 import { fabClasses } from '@mui/material';
 
@@ -40,29 +40,34 @@ const drawerWidth = 240;
 
 export default function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-      
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    }
+     
+    const [open, setOpen] = React.useState({
+        home: false,
+        authorInformation: false,
+        program: false,
+        registration: false,
+        travel: false,
+        sponsors: false,
+    });
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+        setOpen(false);
+    }
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
     
-    const [open, setOpen] = React.useState({
-        home: false,
-        authorInformation: false,
-        program: false,
-    });
-
     const handleClick = (menu) => {
         setOpen((prevState) => ({
             ...prevState,
             [menu]: !prevState[menu],
         }));
-    };
+        setAnchorElNav((prevState) => (prevState ? null : menu));
+    }; 
 
     const drawer = (
         <Box sx={{ textAlign: 'center' }}>
@@ -211,16 +216,131 @@ export default function Navbar() {
                         </Drawer>
                     </Box>
                     <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex'} }}>
-                        {pages.map((page) => (
-                        <Button
-                            key={page}
-                            onClick={handleCloseNavMenu}
-                            sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                            endIcon={<KeyboardArrowDownIcon />}
-                        >
-                            {page}
-                        </Button>
-                        ))}
+                        <div>
+                            <Button
+                                id="basic-button-home"
+                                aria-controls={open.home ? 'home-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.home ? 'true' : undefined}   
+                                onClick={() => handleClick('home')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Home      
+                            </Button>
+                            <Menu
+                                id={`${open.home ? 'home-menu' : ''}`}
+                                anchorEl={anchorElNav ? document.querySelector(`#basic-button-${anchorElNav}`) : null}
+                                open={!!anchorElNav && open.home}
+                                onClose={handleCloseNavMenu}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>About ICAECC</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Organizers</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Past Conferences</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>General FAQ  </MenuItem>
+                            </Menu>
+                        </div>
+
+                        <div>
+                            <Button
+                                id="basic-button-authorInformation"
+                                aria-controls={open.authorInformation ? 'author-information' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.authorInformation ? 'true' : undefined}   
+                                onClick={() => handleClick('authorInformation')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Author Information     
+                            </Button>
+                            <Menu
+                                id={`${open.authorInformation ? 'author-information' : ''}`}
+                                anchorEl={anchorElNav ? document.querySelector(`#basic-button-${anchorElNav}`) : null}
+                                open={!!anchorElNav && open.authorInformation}
+                                onClose={handleCloseNavMenu}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Topics</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Author Submission</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>CFP</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Tutorials</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Student Research Forum</MenuItem>
+                            </Menu>
+                        </div>
+
+                        <div>
+                            <Button
+                                id="basic-button-program"
+                                aria-controls={open.program ? 'program' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.program ? 'true' : undefined}   
+                                onClick={() => handleClick('program')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Program     
+                            </Button>
+                            <Menu
+                                id={`${open.program ? 'program' : ''}`}
+                                anchorEl={anchorElNav ? document.querySelector(`#basic-button-${anchorElNav}`) : null}
+                                open={!!anchorElNav && open.program}
+                                onClose={handleCloseNavMenu}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Keynote Sessions</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Workshop</MenuItem>
+                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Invited Speakers</MenuItem>
+                            </Menu>
+                        </div>
+                        
+                        <div>
+                            <Button
+                                id="basic-button-registration"
+                                aria-controls={open.registration ? 'registration' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.registration ? 'true' : undefined}   
+                                onClick={() => handleClick('registration')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Registration    
+                            </Button>
+                        </div>
+
+                        <div>
+                            <Button
+                                id="basic-button-travel"
+                                aria-controls={open.travel ? 'travel' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.travel ? 'true' : undefined}   
+                                onClick={() => handleClick('travel')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Travel & Accomodation   
+                            </Button>
+                        </div>
+
+                        <div>
+                            <Button
+                                id="basic-button-sponsors"
+                                aria-controls={open.sponsors ? 'sponsors' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open.sponsors ? 'true' : undefined}   
+                                onClick={() => handleClick('sponsors')}
+                                sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
+                                endIcon={<KeyboardArrowDownIcon />}
+                            >
+                                Sponsors  
+                            </Button>
+                        </div>
                     </Box>
                 </Toolbar>
             </AppBar>
