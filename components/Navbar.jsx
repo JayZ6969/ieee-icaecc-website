@@ -13,29 +13,47 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Button from '@mui/material/Button';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Collapse from '@mui/material/Collapse';  
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Image from "next/image";
 import REVA from "../public/REVA_1.png";
 import IEEE from "../public/IEEE.png";
-import { fabClasses } from '@mui/material';
 
 const classes = {
-    container: "flex justify-between items-center lg:py-5 md:py-4 sm:py-3",
+    container: "w-full fixed top-0 z-40",
+    wrapper: "flex justify-between items-center lg:py-5 md:py-4 sm:py-3",
     mininavbar: "flex flex-row w-full justify-between items-center bg-black h-8 px-4",
     minilogo: "h-4 w-auto",
     logo: "lg:h-12 md:h-11 md:h-10 xs:h-9 h-8 w-auto",
 }
 
 const pages = ['Home', 'Author Information', 'Program', 'Registration', 'Travel & Accomodation', 'Contact Us'];
+const home = [
+    {name: 'About ICAECC', link: '/home/about-icaecc'},
+    {name: 'Organizers', link: '/home/organizers'}, 
+    {name: 'Past Conferences', link: '/home/past-conferences'}, 
+    {name: 'General FAQ', link: '/home/general-faq'}
+];
+const authorInformation = [
+    {name: 'Topics', link: '/author-information/topics'},
+    {name: 'Author Submission', link: '/author-information/author-submission'},
+    {name: 'CFP', link: '/author-information/cfp'},
+    {name: 'Tutorials', link: '/author-information/tutorials'},
+    {name: 'Student Research Forum', link: '/author-information/student-research-forum'}
+];
+const program = [
+    {name: 'Keynote Sessions', link: '/program/keynote-sessions'},
+    {name: 'Workshop', link: '/program/workshop'},
+    {name: 'Invited Speakers', link: '/program/invited-speakers'}
+];
 
 const ieee_pages = ['IEEE.org', 'IEEE Xplore Digital Library', 'IEEE Standards', 'IEEE Spectrum', 'More Sites'];
+const ieee_links = ['https://www.ieee.org', 'https://ieeexplore.ieee.org', 'https://standards.ieee.org', 'https://spectrum.ieee.org', 'https://www.ieee.org/sitemap.html'];
+
 const drawerWidth = 240;
 
 export default function Navbar() {
@@ -83,18 +101,11 @@ export default function Navbar() {
                     </ListItemButton> 
                     <Collapse in={open.home} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton component="a" href="/home/about" sx={{ pl: 4 }}>
-                                <ListItemText primary="About ICAECC" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/home/organizers" sx={{ pl: 4 }}>
-                                <ListItemText primary="Organizers" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/home/past-conferences" sx={{ pl: 4 }}>
-                                <ListItemText primary="Past Conferences" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/home/general-faq" sx={{ pl: 4 }}>
-                                <ListItemText primary="General FAQ" />
-                            </ListItemButton>
+                            {home.map((item,index) => (
+                                <ListItemButton key={index} component="a" href={item.link} sx={{ pl: 4 }}>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            ))}
                         </List>
                     </Collapse>
                 </ListItem>
@@ -106,21 +117,11 @@ export default function Navbar() {
                     </ListItemButton> 
                     <Collapse in={open.authorInformation} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton component="a" href="/author-information/topics" sx={{ pl: 4 }}>
-                                <ListItemText primary="Topics" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/author-information/author-submission" sx={{ pl: 4 }}>
-                                <ListItemText primary="Author Submission" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/author-information/cfp" sx={{ pl: 4 }}>
-                                <ListItemText primary="CFP" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/author-information/tutorials" sx={{ pl: 4 }}>
-                                <ListItemText primary="Tutorials" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/author-information/student-research-forum" sx={{ pl: 4 }}>
-                                <ListItemText primary="Student Research Forum" />
-                            </ListItemButton>
+                            {authorInformation.map((item,index) => (
+                                <ListItemButton key={index} component="a" href={item.link} sx={{ pl: 4 }}>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            ))}
                         </List>
                     </Collapse>
                 </ListItem>
@@ -132,15 +133,11 @@ export default function Navbar() {
                     </ListItemButton> 
                     <Collapse in={open.program} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton component="a" href="/program/keynote-sessions" sx={{ pl: 4 }}>
-                                <ListItemText primary="Keynote Sessions" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/program/workshops" sx={{ pl: 4 }}>
-                                <ListItemText primary="Workshops" />
-                            </ListItemButton>
-                            <ListItemButton component="a" href="/program/invited-speakers" sx={{ pl: 4 }}>
-                                <ListItemText primary="Invted Speakers" />
-                            </ListItemButton>
+                            {program.map((item, index) => (
+                                <ListItemButton key={index} component="a" href={item.link} sx={{ pl: 4 }}>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            ))}
                         </List>
                     </Collapse>
                 </ListItem>
@@ -167,7 +164,7 @@ export default function Navbar() {
     );
 
     return (
-        <nav>
+        <nav className={classes.container}>
             <AppBar position='static' className={classes.mininavbar} sx={{backgroundColor: '#000', display: {md: 'flex', xs: 'none'}}}>
                 <div className={classes.mininavbar}>    
                 <Box sx={{ flexGrow: 0 , display: 'flex'}}>
@@ -176,6 +173,9 @@ export default function Navbar() {
                             key={page}
                             onClick={handleCloseNavMenu}
                             sx={{ color: 'white', display: 'block', paddingX: '0.75rem' }}
+                            component="a"
+                            {...{ href: ieee_links[ieee_pages.indexOf(page)] }}
+                            target="_blank"
                         >
                             {page}
                         </Button>
@@ -185,7 +185,7 @@ export default function Navbar() {
                 </div>
             </AppBar>
             <AppBar position="static">
-                <Toolbar className={classes.container} sx={{backgroundColor: '#fff'}}>
+                <Toolbar className={classes.wrapper} sx={{backgroundColor: '#fff'}}>
                     <Image className={classes.logo} src={REVA} alt="" />
                     <Box sx={{ flexGrow: 0, display: { xs: 'flex', lg: 'none' } }}>
                         <IconButton
@@ -224,7 +224,7 @@ export default function Navbar() {
                                 aria-expanded={open.home ? 'true' : undefined}   
                                 onClick={() => handleClick('home')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.home ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Home      
                             </Button>
@@ -238,10 +238,11 @@ export default function Navbar() {
                                 }}
                                 sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>About ICAECC</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Organizers</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Past Conferences</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>General FAQ  </MenuItem>
+                                {home.map((item,index) => (
+                                    <MenuItem key={index} component="a" href={item.link} onClick={handleCloseNavMenu}>
+                                        {item.name}
+                                    </MenuItem>
+                                ))}
                             </Menu>
                         </div>
 
@@ -253,7 +254,7 @@ export default function Navbar() {
                                 aria-expanded={open.authorInformation ? 'true' : undefined}   
                                 onClick={() => handleClick('authorInformation')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.authorInformation ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Author Information     
                             </Button>
@@ -267,11 +268,11 @@ export default function Navbar() {
                                 }}
                                 sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Topics</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Author Submission</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>CFP</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Tutorials</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Student Research Forum</MenuItem>
+                               {authorInformation.map((item,index) => (
+                                    <MenuItem key={index} component="a" href={item.link} onClick={handleCloseNavMenu}>
+                                        {item.name}
+                                    </MenuItem>
+                                ))}
                             </Menu>
                         </div>
 
@@ -283,7 +284,7 @@ export default function Navbar() {
                                 aria-expanded={open.program ? 'true' : undefined}   
                                 onClick={() => handleClick('program')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.program ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Program     
                             </Button>
@@ -297,9 +298,11 @@ export default function Navbar() {
                                 }}
                                 sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Keynote Sessions</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Workshop</MenuItem>
-                                <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Invited Speakers</MenuItem>
+                                {program.map((item,index) => (
+                                    <MenuItem key={index} component="a" href={item.link} onClick={handleCloseNavMenu}>
+                                        {item.name}
+                                    </MenuItem>
+                                ))}
                             </Menu>
                         </div>
                         
@@ -311,7 +314,7 @@ export default function Navbar() {
                                 aria-expanded={open.registration ? 'true' : undefined}   
                                 onClick={() => handleClick('registration')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.registration ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Registration    
                             </Button>
@@ -325,7 +328,7 @@ export default function Navbar() {
                                 aria-expanded={open.travel ? 'true' : undefined}   
                                 onClick={() => handleClick('travel')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.travel ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Travel & Accomodation   
                             </Button>
@@ -339,7 +342,7 @@ export default function Navbar() {
                                 aria-expanded={open.sponsors ? 'true' : undefined}   
                                 onClick={() => handleClick('sponsors')}
                                 sx={{ color: 'black', display: 'flex', paddingX: '0.75rem' }}
-                                endIcon={<KeyboardArrowDownIcon />}
+                                endIcon={open.sponsors ? <ExpandLess /> : <ExpandMore />}
                             >
                                 Sponsors  
                             </Button>
