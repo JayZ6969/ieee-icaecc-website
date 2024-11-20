@@ -40,7 +40,7 @@ const Carousel = () => {
     };
 
     return (
-        <div className='flex flex-row w-full rounded-2xl pt-[7.7rem]'>
+        <div className='flex flex-row w-full rounded-2xl pt-[7.55rem]'>
             <div className="relative min-w-[850px] flex-1 overflow-hidden hidden lg:block">
                 <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {images.map((src, index) => (
