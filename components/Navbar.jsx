@@ -236,6 +236,7 @@ export default function Navbar() {
                                 MenuListProps={{
                                     'aria-labelledby': 'basic-button',
                                 }}
+                                sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>About ICAECC</MenuItem>
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Organizers</MenuItem>
@@ -264,6 +265,7 @@ export default function Navbar() {
                                 MenuListProps={{
                                     'aria-labelledby': 'basic-button',
                                 }}
+                                sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Topics</MenuItem>
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Author Submission</MenuItem>
@@ -293,6 +295,7 @@ export default function Navbar() {
                                 MenuListProps={{
                                     'aria-labelledby': 'basic-button',
                                 }}
+                                sx={{display: {lg: 'flex', xs: 'none'}}}
                             >
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Keynote Sessions</MenuItem>
                                 <MenuItem component="a" href="#" onClick={handleCloseNavMenu}>Workshop</MenuItem>
