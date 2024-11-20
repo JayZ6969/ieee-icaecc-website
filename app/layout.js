@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={theme }>
         <AppRouterCacheProvider>
           <Navbar />
-          <Carousel/>
           <main>{children}</main>
           {/* <Footer /> */}
         </AppRouterCacheProvider>
