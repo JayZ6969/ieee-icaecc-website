@@ -21,7 +21,7 @@ module.exports = {
     function ({ addUtilities }) {
       const newUtilities = {
         '.clip-slant-left': {
-          'clip-path': 'polygon(0% 0, 100% 0, 100% 100%, 13% 100%)',
+          'clip-path': 'polygon(0% 0, 100% 0, 100% 100%, 20% 100%)',
         },
       }
       addUtilities(newUtilities, ['responsive', 'hover'])
