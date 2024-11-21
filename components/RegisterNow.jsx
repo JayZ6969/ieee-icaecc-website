@@ -14,7 +14,7 @@ export default function RegisterNow() {
     <div className={classes.container}>
         <h1 className={classes.header}>Registration closes on 30th November 2025</h1>
         <button className={classes.button}>
-            <a href="https://www.reva.edu.in" className={classes.button}>
+            <a href="#" className={classes.button}>
                 Register Now !
                 <KeyboardArrowRightIcon />
             </a>
