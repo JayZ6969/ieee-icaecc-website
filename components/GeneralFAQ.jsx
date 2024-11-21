@@ -12,7 +12,7 @@ const classes = {
   Title: 'xl:text-5xl text-3xl md:text-4xl font-bold text-white mt-1 px-8 ',
   FAQsection: 'w-full py-8 flex flex-col p-4 justify-center items-center  mt-4',
   Accordionsection:'w-full  max-w-[1100px]',
-  Question:'text-xl font-semibold py-6'
+  Question:'text-xl font-semibold py-3'
 };
 
 const FAQquestions = [
@@ -32,16 +32,15 @@ const GeneralFAQ = () => {
       </div>
       <div className={classes.FAQsection}>
         {FAQquestions.map((faq, index) => (
-          <div className={classes.Accordionsection}>
-            
-            <Accordion key={index}>
+          <div className={classes.Accordionsection} key={index}>
+            <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <div className={classes.Question}>{faq.Question}</div>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>{faq.Answer}</Typography>
             </AccordionDetails>
-        </Accordion>
+            </Accordion>
           </div>
         ))}
       </div>
