@@ -1,5 +1,7 @@
-"use client";
+'use client'
+
 import { useState, useEffect } from 'react';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Image from "next/image";
 import logo from '../public/REVA_1.png'
 import img1 from '../public/1.png'
@@ -16,8 +18,8 @@ const classes = {
     Location: 'font-bold mt-1 text-black 2xl:text-2xl p-2',
     Details: 'max-w-[400px] 2xl:max-w-[500px] font-medium 2xl:text-xl text-black ml-12 text-justify p-2',
     buttons: 'flex flex-row  gap-6 2xl:gap-12 mt-3 mb-[1px] mb:-ml-4',
-    ContactButton: 'border text-black 2xl:text-2xl font-medium p-4 lg:p-3 rounded-lg ',
-    RegisterNow: 'bg-orange-400 font-medium 2xl:text-2xl text-white p-4 lg:p-3 rounded-lg'
+    ContactButton: 'border text-black 2xl:text-lg font-medium p-4 lg:p-3 rounded-xl ',
+    RegisterNow: ' flex items-center justify-between bg-orange-400 font-medium 2xl:text-lg text-white p-4 lg:p-3 rounded-xl'
 }
 
 const Carousel = () => {
@@ -59,7 +61,7 @@ const Carousel = () => {
                     </div>
                     <div className={classes.Details}>ICAECC, an international conference on engineering, technology, and education is the IEEE Education Society’s premier conference series in the Asia-Pacific region. </div>
                     <div className={classes.buttons}><button className={classes.ContactButton}>Contact Us</button>
-                        <button className={classes.RegisterNow}>Register Now!</button></div>
+                        <button className={classes.RegisterNow}>Register Now !<KeyboardArrowRightIcon /></button></div>
                 </div>
             </div></div>
     );
