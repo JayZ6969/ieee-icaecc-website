@@ -11,6 +11,13 @@ import img4 from '../public/4.png'
 
 
 const classes = {
+    container: 'flex flex-row w-full rounded-2xl pt-[7.6rem]',
+    carouselContainer: 'relative flex-1 overflow-hidden hidden lg:block',
+    carousel: 'flex transition-transform duration-500 ease-in-out',
+    carouselImage: 'w-full min-h-[500px] object-cover',
+    caourselButton_L: 'absolute top-1/2 transform -translate-y-1/2 bg-white rounded-full bg-opacity-50 text-white border-none p-2 py-0 cursor-pointer left-2 h-7 w-7 z-20',
+    carouselButton_R: 'absolute top-1/2 transform -translate-y-1/2 bg-black rounded-full bg-opacity-50 text-white border-none p-2 py-0 cursor-pointer right-2 md:right-16 2xl:right-12 z-20 h-7 w-7 hidden xl:block',
+    carouselButtonContainer: 'flex items-center justify-center',
     InfoSection: 'z-10 flex-1 w-[452px] lg:-ml-[200px] w-full p-8 lg:clip-slant-left flex flex-col items-center gap-2 justify-center bg-white ',
     logo: 'h-14 w-auto 2xl:h-20 object-contain -ml-8 mt-[1px] ml-2',
     DateLocation: 'ml-4 flex flex-row gap-4 mt-4 sm:max-width-[350px]',
@@ -42,15 +49,15 @@ const Carousel = () => {
     };
 
     return (
-        <div className='flex flex-row w-full rounded-2xl pt-[7.6rem]'>
-            <div className="relative flex-1 overflow-hidden hidden lg:block">
-                <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div className={classes.container}>
+            <div className={classes.carouselContainer}>
+                <div className={classes.carousel} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {images.map((src, index) => (
-                        <Image key={index} src={src} className="w-full min-h-[500px] object-cover " alt={`Slide ${index + 1}`} />
+                        <Image key={index} src={src} className={classes.carouselImage} alt={`Slide ${index + 1}`} />
                     ))}
                 </div>
-                <button className="absolute top-1/2 transform -translate-y-1/2 bg-white rounded-full bg-opacity-50 text-white border-none p-2 py-0 cursor-pointer left-2 h-7 w-7 z-20" onClick={prevSlide}>&#10094;</button>
-                <button className="absolute top-1/2 transform -translate-y-1/2 bg-black rounded-full bg-opacity-50 text-white border-none p-2 py-0 cursor-pointer right-2 md:right-16 2xl:right-12 z-20 h-7 w-7 hidden xl:block " onClick={nextSlide}>&#10095;</button>
+                <button className={classes.caourselButton_L} onClick={prevSlide}><div className={classes.carouselButtonContainer}><KeyboardArrowRightIcon /></div></button>
+                <button className={classes.carouselButton_R} onClick={nextSlide}><div className={classes.carouselButtonContainer}><KeyboardArrowRightIcon /></div></button>
             </div>
             <div className={classes.InfoSection}>
                 <div className=' lg:-mr-[70px] flex flex-col justify-center items-center gap-2'>
