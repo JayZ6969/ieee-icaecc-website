@@ -1,6 +1,6 @@
 import * as React from 'react';
 const classes ={
-    AboutContainer:'w-full flex flex-col items-center justify-center p-4 lg:p-16 sm:gap-4 pt-12',
+    AboutContainer:'w-full flex flex-col items-center justify-center p-4 xl:p-16 sm:gap-4 pt-12',
     AboutContent:'flex flex-col items-center justify-center gap-3 mt-8',
     header:'text-4xl font-extrabold -ml-2',
     para:'text-black text-lg text-justify p-2 max-w-[1100px]'
