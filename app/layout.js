@@ -1,9 +1,12 @@
 import "./globals.css";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/Navbar";
-import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 
 

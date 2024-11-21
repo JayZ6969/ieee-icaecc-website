@@ -4,6 +4,9 @@ import RegisterNow from "../components/RegisterNow";
 import ImportantDates from "../components/ImportantDates";
 import About from "../components/About";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export default function Home() {
   return (
     <>
