@@ -1,9 +1,11 @@
+import dynamic from 'next/dynamic';
 import React from "react";
-import Carousel from "../components/Carousel";
-import RegisterNow from "../components/RegisterNow";
-import ImportantDates from "../components/ImportantDates";
-import About from "../components/About";
-import GeneralFAQ from "../components/GeneralFAQ";
+
+const Carousel = dynamic(() => import("../components/Carousel"), { ssr: false });
+const RegisterNow = dynamic(() => import("../components/RegisterNow"), { ssr: false });
+const ImportantDates = dynamic(() => import("../components/ImportantDates"), { ssr: false });
+const About = dynamic(() => import("../components/About"), { ssr: false });
+const GeneralFAQ = dynamic(() => import("../components/GeneralFAQ"), { ssr: false });
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
