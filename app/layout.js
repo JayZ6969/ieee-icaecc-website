@@ -6,7 +6,6 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 export const metadata = {
   title: "ICAECC 2025 - REVA University",
@@ -14,6 +13,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
       <head>
