@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 const classes ={
     AboutContainer:'w-full flex flex-col items-center justify-center p-4 xl:p-16 sm:gap-4 pt-12',

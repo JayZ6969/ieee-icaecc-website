@@ -8,7 +8,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-
 export const metadata = {
   title: "ICAECC 2025 - REVA University",
   description: "IEEE-ICAECC-2025 Conference Website",
